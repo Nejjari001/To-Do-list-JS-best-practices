@@ -1,9 +1,9 @@
 import retrieveFromStorage from './retrieveFromStorage.js';
 
-const checkCompleted = (id) => {
+const checkCompleted = id => {
   const totalTasks = JSON.parse(retrieveFromStorage('todo'));
 
-  totalTasks.forEach((task) => {
+  totalTasks.forEach(task => {
     if (task.index === id) {
       task.completed = !task.completed;
     }
