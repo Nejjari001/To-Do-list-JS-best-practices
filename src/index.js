@@ -1,42 +1,23 @@
 import './style.css';
-import displayTasks, { footer } from './modules/displayTasks.js';
-import addTask from './modules/addTask.js';
+import store from './modules/store.js';
+import displayTodo from './modules/function.js';
+import formClear from './modules/cleartask.js';
 
-const totalTasks = [
-  {
-    description: 'Wash the dishes',
-    completed: false,
-    index: 1,
-  },
-  {
-    description: 'Food',
-    completed: false,
-    index: 2,
-  },
-  {
-    description: 'Baith',
-    completed: false,
-    index: 3,
-  },
-  {
-    description: 'Sleep',
-    completed: false,
-    index: 4,
-  },
-];
+const form = document.querySelector('.form');
 
-const tasksListDisplay = document.querySelector('.display');
-
-if (totalTasks.length === 0) {
-  tasksListDisplay.innerHTML = '<hr/><p>No tasks available now!</p>';
-}
-
-/* Add a new task */
-addTask();
-
-window.addEventListener('DOMContentLoaded', () => {
-  totalTasks.forEach((i) => {
-    displayTasks(i);
-  });
-  footer();
+form.addEventListener('submit', (e) => {
+  e.preventDefault();
+  const input = Object.fromEntries(new FormData(e.target));
+  store(input.task);
+  displayTodo();
 });
+
+const clearBtn = document.querySelector('.clear-btn');
+
+clearBtn.addEventListener('click', (e) => {
+  e.preventDefault();
+  formClear();
+  displayTodo();
+});
+
+displayTodo();
