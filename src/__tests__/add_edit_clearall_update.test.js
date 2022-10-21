@@ -59,13 +59,3 @@ describe('Checkbox', () => {
     }]));
   });
 });
-
-describe('Clear all completed', () => {
-  test('Should delete all the tasks marked as completed', () => {
-    const list = document.querySelectorAll('textarea');
-    store('Wooooorld');
-    formClear();
-    displayTodo();
-    expect(list).toHaveLength(1);
-  });
-});
